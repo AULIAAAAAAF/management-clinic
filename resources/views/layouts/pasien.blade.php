@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Auth; @endphp
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,18 @@
             <a href="/pasien/booking" class="block px-4 py-2 rounded-lg hover:bg-blue-50">📅 Booking Jadwal</a>
             <a href="/pasien/antrian" class="block px-4 py-2 rounded-lg hover:bg-blue-50">🧾 Status Antrian</a>
             <a href="/pasien/riwayat" class="block px-4 py-2 rounded-lg hover:bg-blue-50">📖 Riwayat Konsultasi</a>
+            <a href="/profile" class="block px-4 py-2 rounded-lg hover:bg-blue-50">👤 Profile</a>
+            @if(Auth::user()->email === 'admin@clinic.com')
+            <a href="/admin/dashboard" class="block px-4 py-2 rounded-lg hover:bg-purple-50 text-purple-600">⚙️ Admin Panel</a>
+            @endif
         </nav>
+
+        <form method="POST" action="{{ route('logout') }}" class="mt-6 pt-6 border-t">
+            @csrf
+            <button type="submit" class="block w-full text-left px-4 py-2 rounded-lg hover:bg-red-50 text-red-600">
+                🚪 Logout
+            </button>
+        </form>
     </aside>
 
     <!-- CONTENT -->

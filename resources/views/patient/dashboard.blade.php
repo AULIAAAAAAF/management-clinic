@@ -17,7 +17,10 @@
             <a href="/pasien/booking" class="block px-4 py-2 rounded-lg hover:bg-blue-50">📅 Booking Jadwal</a>
             <a href="/pasien/antrian" class="block px-4 py-2 rounded-lg hover:bg-blue-50">🧾 Status Antrian</a>
             <a href="/pasien/riwayat" class="block px-4 py-2 rounded-lg hover:bg-blue-50">📖 Riwayat Konsultasi</a>
-            <a href="/logout" class="block px-4 py-2 rounded-lg hover:bg-red-50 text-red-500 mt-6">🚪 Logout</a>
+            <form method="POST" action="{{ route('logout') }}" class="mt-6">
+            @csrf
+            <button type="submit" class="block w-full text-left px-4 py-2 rounded-lg hover:bg-red-50 text-red-500">🚪 Logout</button>
+        </form>
         </nav>
     </aside>
 

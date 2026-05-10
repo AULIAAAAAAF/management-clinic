@@ -3,32 +3,31 @@
 @section('content')
 <h1 class="text-3xl font-bold mb-6">📖 Riwayat Konsultasi</h1>
 
-<div class="bg-white p-6 rounded-2xl shadow">
-
-    <table class="w-full text-left">
-        <thead>
-            <tr class="border-b text-gray-500">
-                <th class="p-2">Tanggal</th>
-                <th class="p-2">Dokter</th>
-                <th class="p-2">Keluhan</th>
-                <th class="p-2">Hasil</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="border-b">
-                <td class="p-2">10-05-2026</td>
-                <td class="p-2">Dr. Andi</td>
-                <td class="p-2">Demam</td>
-                <td class="p-2 text-green-600">Selesai</td>
-            </tr>
-            <tr class="border-b">
-                <td class="p-2">02-05-2026</td>
-                <td class="p-2">Dr. Sari</td>
-                <td class="p-2">Sakit gigi</td>
-                <td class="p-2 text-green-600">Selesai</td>
-            </tr>
-        </tbody>
-    </table>
-
-</div>
+@if($bookings->count() > 0)
+    <div class="space-y-4">
+        @foreach($bookings as $booking)
+            <div class="bg-white p-6 rounded-2xl shadow">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-lg font-bold text-blue-600">{{ $booking->dokter->nama }}</p>
+                        <p class="text-gray-600">{{ $booking->dokter->spesialis }}</p>
+                        <p class="text-sm text-gray-400 mt-1">
+                            📅 {{ $booking->tanggal_booking->format('d M Y H:i') }}
+                        </p>
+                        @if($booking->keluhan)
+                            <p class="text-sm text-gray-500 mt-2">Keluhan: {{ $booking->keluhan }}</p>
+                        @endif
+                    </div>
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-bold">
+                        Selesai
+                    </span>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@else
+    <div class="bg-white p-6 rounded-2xl shadow">
+        <p class="text-gray-500">Belum ada riwayat konsultasi</p>
+    </div>
+@endif
 @endsection
